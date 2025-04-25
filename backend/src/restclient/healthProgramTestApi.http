@@ -1,0 +1,15 @@
+### Create a health program
+POST http://localhost:4000/api/programs
+Content-Type: application/json
+
+{
+  "name": "HIV Program",
+  "description": "Support and care for people living with HIV."
+}
+
+### Get all health programs
+GET http://localhost:4000/api/programs
+
+### Get a specific health program by ID
+GET http://localhost:4000/api/programs/372a2009-de54-454e-b3a7-c2a351b3970a
+
