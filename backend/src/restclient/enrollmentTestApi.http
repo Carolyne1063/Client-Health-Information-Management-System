@@ -1,0 +1,27 @@
+### Enroll a Client into a Program
+POST http://localhost:4000/api/enrollments/create
+Content-Type: application/json
+
+{
+  "clientId": "f513745e-d29c-48ae-9e81-105ac79253d9",
+  "programId": "372a2009-de54-454e-b3a7-c2a351b3970a",
+  "startDate": "2024-07-10"
+}
+
+### Get All Enrollments
+GET http://localhost:4000/api/enrollments
+
+### Get Enrollment By ID
+GET http://localhost:4000/api/enrollments/c4590277-df72-46d9-ab24-fef1351ceadc
+
+### Update Enrollment
+PUT http://localhost:4000/api/enrollments/1e16b16c-dee7-427c-a8d8-fa1a41c605da
+Content-Type: application/json
+
+{ "clientId": "f513745e-d29c-48ae-9e81-105ac79253d9",
+  "programId": "372a2009-de54-454e-b3a7-c2a351b3970a",
+  "startDate": "2024-10-10"
+}
+
+### Delete Enrollment
+DELETE http://localhost:4000/api/enrollments/c4590277-df72-46d9-ab24-fef1351ceadc
