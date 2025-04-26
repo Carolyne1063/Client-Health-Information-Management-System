@@ -14,5 +14,16 @@ Content-Type: application/json
 
 {
   "email": "admin@example.com",
-  "password": "Admin"
+  "password": "admin"
 }
+
+###Update admin details
+PUT http://localhost:4000/api/admin/2bfbc244-5da6-48ed-b7c3-5a64b97c7edf
+Content-Type: application/json
+
+{
+  "name": "Admin Carol",
+  "email": "admin@example.com",
+  "password": "admin"
+}
+

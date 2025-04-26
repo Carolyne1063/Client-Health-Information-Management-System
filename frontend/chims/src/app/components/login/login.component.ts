@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
@@ -21,12 +21,15 @@ export class LoginComponent {
 
   onSubmit() {
     const credentials = { email: this.email, password: this.password };
-    
+
     this.adminService.loginAdmin(credentials).subscribe({
       next: (response) => {
         console.log('Login successful', response);
         this.successMessage = 'Login successful! Redirecting...';
         this.errorMessage = '';
+
+        // Store the admin data (including id) in localStorage after successful login
+        localStorage.setItem('adminData', JSON.stringify(response.admin));
 
         // Wait 2 seconds, then redirect
         setTimeout(() => {

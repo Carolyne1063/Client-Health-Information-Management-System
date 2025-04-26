@@ -41,4 +41,5 @@ const controller = __importStar(require("../controllers/adminController"));
 const router = express_1.default.Router();
 router.post('/register', controller.registerAdmin);
 router.post('/login', controller.loginAdmin);
+router.put('/:id', controller.updateAdmin);
 exports.default = router;

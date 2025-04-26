@@ -28,3 +28,19 @@ export const loginAdmin = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const updateAdmin = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  try {
+    const updatedAdmin = await adminService.updateAdmin(id, data);
+    res.json(updatedAdmin);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(400).json({ error: err.message });
+    } else {
+      res.status(400).json({ error: 'An unknown error occurred' });
+    }
+  }
+};

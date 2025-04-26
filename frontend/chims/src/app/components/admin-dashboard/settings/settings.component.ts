@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AdminService } from '../../../services/adminService';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../../services/adminService';  // Ensure the path is correct
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,8 +10,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   admin = {
+    id: '',   // Admin ID will be set from localStorage
     name: '',
     email: '',
     password: ''
@@ -19,11 +20,28 @@ export class SettingsComponent {
 
   constructor(private adminService: AdminService) {}
 
+  ngOnInit() {
+    // Fetch admin details from localStorage
+    const adminData = localStorage.getItem('adminData');
+    if (adminData) {
+      const admin = JSON.parse(adminData);
+      this.admin.id = admin.id;  // Set admin ID from localStorage
+      this.admin.name = admin.name;
+      this.admin.email = admin.email;
+    }
+  }
+
   onSubmit() {
+    // Call the update service
     this.adminService.updateAdmin(this.admin).subscribe(response => {
       console.log('Admin updated', response);
+      alert('Admin details updated successfully!');
+
+      // Update local storage with the new admin data
+      localStorage.setItem('adminData', JSON.stringify(response));
     }, error => {
       console.error('Error updating admin', error);
+      alert('Error updating admin details. Please try again.');
     });
   }
 }

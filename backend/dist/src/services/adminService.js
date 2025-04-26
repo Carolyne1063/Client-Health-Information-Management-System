@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginAdmin = exports.registerAdmin = void 0;
+exports.updateAdmin = exports.loginAdmin = exports.registerAdmin = void 0;
 const client_1 = require("@prisma/client");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const prisma = new client_1.PrismaClient();
@@ -29,3 +29,16 @@ const loginAdmin = async (email, password) => {
     return admin;
 };
 exports.loginAdmin = loginAdmin;
+const updateAdmin = async (id, data) => {
+    const { name, email, password } = data;
+    // If a password is provided, hash it
+    let updatedData = { name, email };
+    if (password) {
+        updatedData.password = await bcryptjs_1.default.hash(password, 10);
+    }
+    return await prisma.admin.update({
+        where: { id },
+        data: updatedData,
+    });
+};
+exports.updateAdmin = updateAdmin;

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginAdmin = exports.registerAdmin = void 0;
+exports.updateAdmin = exports.loginAdmin = exports.registerAdmin = void 0;
 const adminService = __importStar(require("../services/adminService"));
 const registerAdmin = async (req, res) => {
     try {
@@ -66,3 +66,20 @@ const loginAdmin = async (req, res) => {
     }
 };
 exports.loginAdmin = loginAdmin;
+const updateAdmin = async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        const updatedAdmin = await adminService.updateAdmin(id, data);
+        res.json(updatedAdmin);
+    }
+    catch (err) {
+        if (err instanceof Error) {
+            res.status(400).json({ error: err.message });
+        }
+        else {
+            res.status(400).json({ error: 'An unknown error occurred' });
+        }
+    }
+};
+exports.updateAdmin = updateAdmin;

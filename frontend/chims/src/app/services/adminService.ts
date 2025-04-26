@@ -12,11 +12,14 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  updateAdmin(admin: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${admin.id}`, admin);
-  }
-
   loginAdmin(credentials: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
-  }
+  }  
+
+  // src/app/services/admin.service.ts
+updateAdmin(admin: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${admin.id}`, admin);  // Ensure admin.id is part of the URL
+}
+
+
 }
