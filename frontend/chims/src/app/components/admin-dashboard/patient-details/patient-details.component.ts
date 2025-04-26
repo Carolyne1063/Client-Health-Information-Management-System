@@ -16,8 +16,7 @@ export class PatientDetailsComponent {
   patient: any;
   isEditing = false;
   showDeletePopup = false;
-
-
+  
   constructor(
     private route: ActivatedRoute,
     private clientService: ClientService,
@@ -61,12 +60,27 @@ export class PatientDetailsComponent {
     this.showDeletePopup = false;
   }
   
-
   // Navigate to edit client form (Assuming you have a route like 'client/edit/:id')
   editClient() {
     const patientId = this.route.snapshot.paramMap.get('id');
     if (patientId) {
       this.router.navigate(['/client/edit', patientId]); // Replace with your route to edit client
+    }
+  }
+
+  // Update patient details after editing
+  updatePatient() {
+    const patientId = this.route.snapshot.paramMap.get('id');
+    if (patientId) {
+      this.clientService.updateClient(patientId, this.patient).subscribe({
+        next: (response) => {
+          console.log('Patient updated successfully:', response);
+          this.isEditing = false; // Exit edit mode
+        },
+        error: (err) => {
+          console.error('Error updating patient:', err);
+        }
+      });
     }
   }
 
