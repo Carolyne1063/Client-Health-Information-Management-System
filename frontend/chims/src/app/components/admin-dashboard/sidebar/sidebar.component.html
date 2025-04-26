@@ -1,0 +1,80 @@
+<aside class="h-screen bg-emerald-900 text-white p-5 w-64 transition-all duration-300 fixed left-0 top-0 flex flex-col space-y-4" id="sidebar">
+
+    <!-- Profile Section -->
+    <div class="flex items-center space-x-3 mb-6">
+        <!-- <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile" class="w-12 h-12 rounded-full object-cover border-2 border-white"/> -->
+        <div>
+            <span class="text-white font-semibold">{{ adminName }}</span>
+            <p class="text-gray-300 text-sm">{{ adminRole }}</p>
+        </div>
+    </div>
+
+    <!-- Navigation menu -->
+    <nav class="flex-grow">
+        <ul class="space-y-4">
+            <li>
+                <a routerLink="dashboard" routerLinkActive="bg-emerald-700" 
+                   class="flex items-center space-x-4 p-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="flex-1">Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Patients with Dropdown -->
+            <li>
+                <button (click)="togglePatientsMenu()" 
+                        class="w-full flex items-center space-x-4 p-3 rounded-lg bg-emerald-500 hover:bg-emerald-500 transition-all">
+                    <i class="fas fa-user-injured"></i>
+                    <span class="flex-1">Patients</span>
+                    <i class="fas" [ngClass]="{'fa-chevron-down': !patientsMenuOpen, 'fa-chevron-up': patientsMenuOpen}"></i>
+                </button>
+
+                <div *ngIf="patientsMenuOpen" class="ml-8 mt-2 space-y-2">
+                    <a routerLink="add-patient" 
+                       class="flex items-center space-x-3 p-2 rounded-md bg-emerald-500 hover:bg-emerald-400 transition-all">
+                        <span>Add Patient</span>
+                    </a>
+                    <a routerLink="all-patients" 
+                       class="flex items-center space-x-3 p-2 rounded-md bg-emerald-500 hover:bg-emerald-400 transition-all">
+                        <span>All Patients</span>
+                    </a>
+                    <a routerLink="enroll-patient" 
+                       class="flex items-center space-x-3 p-2 rounded-md bg-emerald-500 hover:bg-emerald-400 transition-all">
+                        <span>Enroll Patient</span>
+                    </a>
+                </div>
+            </li>
+
+            <li>
+                <a routerLink="programs" routerLinkActive="bg-emerald-700" 
+                   class="flex items-center space-x-4 p-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all">
+                    <i class="fas fa-heartbeat"></i>
+                    <span class="flex-1">Health Programs</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="enrollments" routerLinkActive="bg-emerald-700" 
+                   class="flex items-center space-x-4 p-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span class="flex-1">Enrollments</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="settings" routerLinkActive="bg-emerald-700" 
+                   class="flex items-center space-x-4 p-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all">
+                    <i class="fas fa-cogs"></i>
+                    <span class="flex-1">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Logout Section -->
+    <div class="mt-6 pt-6 border-t border-gray-600">
+        <a routerLink="/home" 
+           class="flex items-center space-x-4 p-3 rounded-lg bg-emerald-800 hover:bg-emerald-700 transition-all">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="flex-1">Logout</span>
+        </a>
+    </div>
+</aside>
