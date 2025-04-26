@@ -19,7 +19,7 @@ export const routes: Routes = [
             { path: 'patients', component: PatientsComponent },
             { path: 'enroll-patient', component: EnrollPatientComponent },
             { path: 'all-patients', component: AllPatientComponent },
-            { path: 'patient-details', component: PatientDetailsComponent },
+            { path: 'patient-details/:id', component: PatientDetailsComponent },
             { path: 'add-patient', component: AddPatientComponent },  
             { path: 'programs', component: HealthProgramsComponent },
             { path: 'enrollments', component: EnrollmentsComponent },
