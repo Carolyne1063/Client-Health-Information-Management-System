@@ -15,6 +15,7 @@ export class AddPatientComponent {
   patientForm: FormGroup;
   successMessage: string = '';
 
+
   constructor(
     private fb: FormBuilder,
     private clientService: ClientService,
@@ -40,22 +41,25 @@ export class AddPatientComponent {
         phone: this.patientForm.value.phone,
         email: this.patientForm.value.email
       };
-  
+
       this.clientService.registerClient(formData).subscribe({
         next: (res: any) => {
           this.successMessage = 'Patient registered successfully!';
-          // this.errorMessage = '';
-          // Just show the success message, no redirection
+          this.patientForm.reset(); // Reset the form
+
+          // Make the success message disappear after 3 seconds
+          setTimeout(() => {
+            this.successMessage = '';
+          }, 3000);
         },
         error: (err: any) => {
           console.error('Error registering patient', err);
-          // this.errorMessage = 'Failed to register patient. Please try again.';
-          // this.successMessage = ''; // Clear success if error
         }
       });
     }
   }
-  
-  }
-  
+
+
+}
+
 

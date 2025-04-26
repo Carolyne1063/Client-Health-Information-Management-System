@@ -1,12 +1,9 @@
 <div class="min-h-screen bg-white p-8">
     <h1 class="text-3xl font-bold text-emerald-800 mb-8">Add New Patient</h1>
 
-    <div *ngIf="successMessage" class="text-green-700 text-center mt-6 font-semibold">
+    <div *ngIf="successMessage" class="text-green-700 text-center mt-6 mb-8 font-semibold">
         {{ successMessage }}
     </div>
-
-    <!-- <div *ngIf="errorMessage" class="text-red-700 text-center mt-6 font-semibold">
-        {{ errorMessage }} -->
 
     <form [formGroup]="patientForm" (ngSubmit)="savePatient()">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

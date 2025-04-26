@@ -30,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Delete Client
-DELETE http://localhost:4000/api/clients/e0d6cc3e-178f-4363-b99f-dde7c0058c62
+DELETE http://localhost:4000/api/clients/d78abeea-4f5a-41b5-96a5-025b30c635b3
