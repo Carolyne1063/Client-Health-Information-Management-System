@@ -30,4 +30,14 @@ export class ProgramService {
   getProgramById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
+
+   // Update an existing health program
+   updateProgram(id: string, program: Program): Observable<Program> {
+    return this.http.put<Program>(`${this.baseUrl}/${id}`, program);
+  }
+
+  // Delete a health program
+  deleteProgram(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }

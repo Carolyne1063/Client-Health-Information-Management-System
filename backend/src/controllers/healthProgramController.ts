@@ -34,3 +34,30 @@ export const getProgramById = async (req: Request, res: Response): Promise<void>
     res.status(500).json({ message: 'Failed to fetch program', error });
   }
 };
+
+export const updateProgram = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, description } = req.body;
+    const updatedProgram = await service.updateHealthProgram(req.params.id, name, description);
+    if (!updatedProgram) {
+      res.status(404).json({ message: 'Program not found' });
+    } else {
+      res.status(200).json(updatedProgram);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update program', error });
+  }
+};
+
+export const deleteProgram = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedProgram = await service.deleteHealthProgram(req.params.id);
+    if (!deletedProgram) {
+      res.status(404).json({ message: 'Program not found' });
+    } else {
+      res.status(200).json({ message: 'Program deleted successfully' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete program', error });
+  }
+};

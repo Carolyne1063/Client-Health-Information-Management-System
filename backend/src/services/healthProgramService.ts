@@ -23,3 +23,21 @@ export const getHealthProgramById = async (id: string) => {
     where: { id },
   });
 };
+
+// Update a health program by ID
+export const updateHealthProgram = async (id: string, name: string, description: string) => {
+  return await prisma.healthProgram.update({
+    where: { id },
+    data: {
+      name,
+      description,
+    },
+  });
+};
+
+// Delete a health program by ID
+export const deleteHealthProgram = async (id: string) => {
+  return await prisma.healthProgram.delete({
+    where: { id },
+  });
+};

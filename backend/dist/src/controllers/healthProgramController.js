@@ -34,7 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProgramById = exports.getPrograms = exports.createProgram = void 0;
+exports.deleteProgram = exports.updateProgram = exports.getProgramById = exports.getPrograms = exports.createProgram = void 0;
 const service = __importStar(require("../services/healthProgramService"));
 const createProgram = async (req, res) => {
     try {
@@ -72,3 +72,34 @@ const getProgramById = async (req, res) => {
     }
 };
 exports.getProgramById = getProgramById;
+const updateProgram = async (req, res) => {
+    try {
+        const { name, description } = req.body;
+        const updatedProgram = await service.updateHealthProgram(req.params.id, name, description);
+        if (!updatedProgram) {
+            res.status(404).json({ message: 'Program not found' });
+        }
+        else {
+            res.status(200).json(updatedProgram);
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Failed to update program', error });
+    }
+};
+exports.updateProgram = updateProgram;
+const deleteProgram = async (req, res) => {
+    try {
+        const deletedProgram = await service.deleteHealthProgram(req.params.id);
+        if (!deletedProgram) {
+            res.status(404).json({ message: 'Program not found' });
+        }
+        else {
+            res.status(200).json({ message: 'Program deleted successfully' });
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Failed to delete program', error });
+    }
+};
+exports.deleteProgram = deleteProgram;

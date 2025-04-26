@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHealthProgramById = exports.getAllHealthPrograms = exports.createHealthProgram = void 0;
+exports.deleteHealthProgram = exports.updateHealthProgram = exports.getHealthProgramById = exports.getAllHealthPrograms = exports.createHealthProgram = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const createHealthProgram = async (name, description) => {
@@ -26,3 +26,21 @@ const getHealthProgramById = async (id) => {
     });
 };
 exports.getHealthProgramById = getHealthProgramById;
+// Update a health program by ID
+const updateHealthProgram = async (id, name, description) => {
+    return await prisma.healthProgram.update({
+        where: { id },
+        data: {
+            name,
+            description,
+        },
+    });
+};
+exports.updateHealthProgram = updateHealthProgram;
+// Delete a health program by ID
+const deleteHealthProgram = async (id) => {
+    return await prisma.healthProgram.delete({
+        where: { id },
+    });
+};
+exports.deleteHealthProgram = deleteHealthProgram;
