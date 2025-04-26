@@ -20,32 +20,29 @@
                 </tr>
             </thead>
             <tbody class="text-sm">
-                <tr class="border-b border-gray-200 hover:bg-green-50">
-                    <td class="py-3 px-6 text-left">1</td>
-                    <td class="py-3 px-6 text-left">John</td>
-                    <td class="py-3 px-6 text-left">Doe</td>
-                    <td class="py-3 px-6 text-left">30</td>
-                    <td class="py-3 px-6 text-left">Male</td>
-                    <td class="py-3 px-6 text-left">+254 712 345678</td>
+                <tr *ngFor="let patient of patients; let i = index" class="border-b border-gray-200 hover:bg-green-50">
+                    <td class="py-3 px-6 text-left">{{ i + 1 }}</td>
+                    <td class="py-3 px-6 text-left">{{ patient.fname }}</td>
+                    <td class="py-3 px-6 text-left">{{ patient.lname }}</td>
+                    <td class="py-3 px-6 text-left">{{ patient.age }}</td>
+                    <td class="py-3 px-6 text-left">{{ patient.gender }}</td>
+                    <td class="py-3 px-6 text-left">{{ patient.phone }}</td>
                     <td class="py-3 px-6 text-center">
-                        <a routerLink="/admin/patient-details"
+                        <a [routerLink]="['/admin/patient-details', patient.id]" 
                             class="bg-green-400 hover:bg-green-500 text-white text-xs font-bold py-2 px-4 rounded-full transition">
                             View Profile
                         </a>
                     </td>
                 </tr>
-
-                <!-- Add more rows -->
             </tbody>
         </table>
 
         <!-- Pagination -->
-        <div class="flex justify-between items-center mt-6 text-gray-600">
-            <p class="text-sm">Showing 1 to 10 of 20 entries</p>
+        <div class="flex justify-between items-center mt-6 text-gray-600" *ngIf="patients.length > 0">
+            <p class="text-sm">Showing {{ patients.length }} patients</p>
             <div class="flex items-center space-x-2">
                 <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">Previous</button>
                 <button class="px-3 py-1 bg-green-400 text-white rounded">1</button>
-                <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">2</button>
                 <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">Next</button>
             </div>
         </div>
