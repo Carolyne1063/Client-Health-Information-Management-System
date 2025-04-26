@@ -15,12 +15,15 @@ export class HealthProgramsComponent implements OnInit {
   isModalOpen = false;
   isEditModalOpen = false;
   programForm: FormGroup;
-  programs: Program[] = []; // Store the programs
-  selectedProgramId: string | null = null; // Store selected program ID for update
+  programs: Program[] = [];
+  selectedProgramId: string | null = null;
+
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private programService: ProgramService, // Inject ProgramService
+    private programService: ProgramService,
     private router: Router
   ) {
     this.programForm = this.fb.group({
@@ -30,41 +33,40 @@ export class HealthProgramsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllPrograms(); // Fetch programs when the component is initialized
+    this.getAllPrograms();
   }
 
-  // Open modal for creating a program
   openModal() {
     this.isModalOpen = true;
   }
 
-  // Close the modal
   closeModal() {
     this.isModalOpen = false;
     this.programForm.reset();
   }
 
-  // Submit new program
   submitProgram() {
     if (this.programForm.valid) {
       const newProgram: Program = this.programForm.value;
       this.programService.createProgram(newProgram).subscribe(
         (response) => {
-          this.programs.push(response); // Add the newly created program to the list
+          this.programs.push(response);
           this.closeModal();
+          this.successMessage = 'Program created successfully!';
+          setTimeout(() => this.successMessage = null, 5000);
         },
         (error) => {
-          console.error('Error creating program', error);
+          this.errorMessage = 'Error creating program. Please try again.';
+          setTimeout(() => this.errorMessage = null, 5000);
         }
       );
     }
   }
 
-  // Fetch all programs
   getAllPrograms() {
     this.programService.getAllPrograms().subscribe(
       (response) => {
-        this.programs = response; // Store fetched programs in the `programs` array
+        this.programs = response;
       },
       (error) => {
         console.error('Error fetching programs', error);
@@ -72,7 +74,6 @@ export class HealthProgramsComponent implements OnInit {
     );
   }
 
-  // Open the edit modal and populate form with selected program's details
   openEditModal(program: Program) {
     this.selectedProgramId = program.id;
     this.programForm.patchValue({
@@ -82,14 +83,12 @@ export class HealthProgramsComponent implements OnInit {
     this.isEditModalOpen = true;
   }
 
-  // Close the edit modal
   closeEditModal() {
     this.isEditModalOpen = false;
     this.programForm.reset();
     this.selectedProgramId = null;
   }
 
-  // Update an existing health program
   updateProgram() {
     if (this.selectedProgramId && this.programForm.valid) {
       const updatedProgram: Program = {
@@ -100,28 +99,33 @@ export class HealthProgramsComponent implements OnInit {
         (response) => {
           const index = this.programs.findIndex((program) => program.id === this.selectedProgramId);
           if (index !== -1) {
-            this.programs[index] = response; // Update the program in the list
+            this.programs[index] = response;
           }
-          this.closeEditModal(); // Close the modal after updating
+          this.closeEditModal();
+          this.successMessage = 'Program updated successfully!';
+          setTimeout(() => this.successMessage = null, 5000);
         },
         (error) => {
-          console.error('Error updating program', error);
+          this.errorMessage = 'Error updating program. Please try again.';
+          setTimeout(() => this.errorMessage = null, 5000);
         }
       );
     }
   }
 
-  // Delete a health program
   deleteProgram(id: string) {
     if (confirm('Are you sure you want to delete this program?')) {
       this.programService.deleteProgram(id).subscribe(
         () => {
-          this.programs = this.programs.filter((program) => program.id !== id); // Remove deleted program from the list
+          this.programs = this.programs.filter((program) => program.id !== id);
+          this.successMessage = 'Program deleted successfully!';
+          setTimeout(() => this.successMessage = null, 5000);
         },
         (error) => {
-          console.error('Error deleting program', error);
+          this.errorMessage = 'Error deleting program. Please try again.';
+          setTimeout(() => this.errorMessage = null, 5000);
         }
       );
     }
-  }
-}
+  }}
+

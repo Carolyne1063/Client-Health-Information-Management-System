@@ -1,4 +1,13 @@
 <div class="p-8 bg-green-50 min-h-screen">
+
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="text-green-600 bg-green-100 p-4 rounded-md mb-4">
+      <strong>{{ successMessage }}</strong>
+    </div>
+    <div *ngIf="errorMessage" class="text-red-600 bg-red-100 p-4 rounded-md mb-4">
+      <strong>{{ errorMessage }}</strong>
+    </div>
+
   <!-- Title and Create Button -->
   <div class="flex items-center justify-between mb-8">
     <div>
@@ -80,8 +89,14 @@
           <td class="py-3 px-6">{{ program.description }}</td>
           <td class="py-3 px-6">{{ program.totalEnrollments || '0' }}</td>
           <td class="py-3 px-6 text-center">
-            <button (click)="openEditModal(program)" class="text-blue-500 hover:text-blue-600">Edit</button>
-            <button (click)="deleteProgram(program.id)" class="text-red-500 hover:text-red-600 ml-4">Delete</button>
+             <!-- Edit Icon -->
+            <button (click)="openEditModal(program)" class="text-blue-500 hover:text-blue-600">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <!-- Delete Icon -->
+            <button (click)="deleteProgram(program.id)" class="text-red-500 hover:text-red-600 ml-4">
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </td>
         </tr>
       </tbody>
