@@ -93,7 +93,6 @@
           <th class="py-3 px-6 text-left">#</th>
           <th class="py-3 px-6 text-left">Program Name</th>
           <th class="py-3 px-6 text-left">Description</th>
-          <th class="py-3 px-6 text-left">Total Enrollments</th>
           <th class="py-3 px-6 text-center">Actions</th>
         </tr>
       </thead>
@@ -102,7 +101,6 @@
           <td class="py-3 px-6">{{ i + 1 }}</td>
           <td class="py-3 px-6">{{ program.name }}</td>
           <td class="py-3 px-6">{{ program.description }}</td>
-          <td class="py-3 px-6">{{ program.totalEnrollments || '0' }}</td>
           <td class="py-3 px-6 text-center">
              <!-- Edit Icon -->
             <button (click)="openEditModal(program)" class="text-blue-500 hover:text-blue-600">

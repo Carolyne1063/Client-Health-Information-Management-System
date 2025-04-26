@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEnrollment = exports.updateEnrollment = exports.fetchEnrollmentsByClientId = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
+exports.deleteEnrollment = exports.updateEnrollment = exports.fetchEnrollmentsByProgramId = exports.fetchEnrollmentsByClientId = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
 const enrollmentService = __importStar(require("../services/enrollmentService"));
 const enrollClient = async (req, res) => {
     try {
@@ -70,6 +70,18 @@ const fetchEnrollmentsByClientId = async (req, res) => {
     }
 };
 exports.fetchEnrollmentsByClientId = fetchEnrollmentsByClientId;
+const fetchEnrollmentsByProgramId = async (req, res) => {
+    const { programId } = req.params;
+    try {
+        const enrollments = await enrollmentService.getEnrollmentsByProgramId(programId);
+        res.status(200).json(enrollments);
+    }
+    catch (error) {
+        console.error('Error fetching enrollments by programId:', error);
+        res.status(500).json({ message: 'Error fetching enrollments', error });
+    }
+};
+exports.fetchEnrollmentsByProgramId = fetchEnrollmentsByProgramId;
 const updateEnrollment = async (req, res) => {
     const { id } = req.params;
     try {

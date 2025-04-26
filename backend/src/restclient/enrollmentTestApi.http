@@ -14,6 +14,10 @@ GET http://localhost:4000/api/enrollments
 ### Get Enrollment By ID
 GET http://localhost:4000/api/enrollments/1e16b16c-dee7-427c-a8d8-fa1a41c605da
 
+### Get Enrollments by Program ID
+GET http://localhost:4000/api/enrollments/program/372a2009-de54-454e-b3a7-c2a351b3970a
+Content-Type: application/json
+
 ### Get Enrollments by Client ID
 GET http://localhost:4000/api/enrollments/client/f513745e-d29c-48ae-9e81-105ac79253d9
 Content-Type: application/json

@@ -34,6 +34,18 @@ export const fetchEnrollmentsByClientId = async (req: Request, res: Response) =>
   }
 };
 
+export const fetchEnrollmentsByProgramId = async (req: Request, res: Response) => {
+  const { programId } = req.params;
+
+  try {
+    const enrollments = await enrollmentService.getEnrollmentsByProgramId(programId);
+    res.status(200).json(enrollments);
+  } catch (error) {
+    console.error('Error fetching enrollments by programId:', error);
+    res.status(500).json({ message: 'Error fetching enrollments', error });
+  }
+};
+
 
 export const updateEnrollment = async (req: Request, res: Response) => {
   const { id } = req.params;

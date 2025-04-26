@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class EnrollmentService {
   private baseUrl = 'http://localhost:4000/api/enrollments'; // change if your API base URL is different
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   enrollClient(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/create`, data);
