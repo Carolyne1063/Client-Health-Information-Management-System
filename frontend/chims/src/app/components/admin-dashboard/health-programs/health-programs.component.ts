@@ -14,6 +14,7 @@ import { Router, RouterModule } from '@angular/router';
 export class HealthProgramsComponent implements OnInit {
   isModalOpen = false;
   isEditModalOpen = false;
+  isDeleteConfirmModalOpen = false;  // Add this property for delete confirmation modal
   programForm: FormGroup;
   programs: Program[] = [];
   selectedProgramId: string | null = null;
@@ -114,18 +115,29 @@ export class HealthProgramsComponent implements OnInit {
   }
 
   deleteProgram(id: string) {
-    if (confirm('Are you sure you want to delete this program?')) {
-      this.programService.deleteProgram(id).subscribe(
+    this.selectedProgramId = id;  // Set selected program ID before showing confirmation modal
+    this.isDeleteConfirmModalOpen = true;  // Open the delete confirmation modal
+  }
+
+  confirmDeleteProgram() {
+    if (this.selectedProgramId) {
+      this.programService.deleteProgram(this.selectedProgramId).subscribe(
         () => {
-          this.programs = this.programs.filter((program) => program.id !== id);
+          this.programs = this.programs.filter((program) => program.id !== this.selectedProgramId);
           this.successMessage = 'Program deleted successfully!';
           setTimeout(() => this.successMessage = null, 5000);
+          this.isDeleteConfirmModalOpen = false;  // Close the confirmation modal
         },
         (error) => {
           this.errorMessage = 'Error deleting program. Please try again.';
           setTimeout(() => this.errorMessage = null, 5000);
+          this.isDeleteConfirmModalOpen = false;  // Close the confirmation modal
         }
       );
     }
-  }}
+  }
 
+  closeDeleteConfirmModal() {
+    this.isDeleteConfirmModalOpen = false;  // Close the delete confirmation modal
+  }
+}
