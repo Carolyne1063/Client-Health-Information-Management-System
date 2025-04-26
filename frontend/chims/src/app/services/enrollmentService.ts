@@ -23,6 +23,11 @@ export class EnrollmentService {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  // Add the new method to get enrollments by program ID
+  getEnrollmentsByProgramId(programId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/program/${programId}`);
+  }
+
   getEnrollmentsByClientId(clientId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/client/${clientId}`);
   }

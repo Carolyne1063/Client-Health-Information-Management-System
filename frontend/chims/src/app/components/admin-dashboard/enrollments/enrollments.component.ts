@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Program, ProgramService } from '../../../services/healthProgramService';
+import { EnrollmentService } from '../../../services/enrollmentService';
 
 
 // Define the Patient type to use for our array
-interface Patient {
-  programId: number;
-  name: string;
-  email: string;
-  startDate: string;
+interface Client {
+  id: string;
+  fname: string;  // First name
+  lname: string;  // Last name
+  email: string;  // Email address
+  startDate: string;  // Start date of the program (this will come from the Enrollment model)
 }
+
 
 @Component({
   selector: 'app-enrollments',
@@ -18,35 +22,61 @@ interface Patient {
   styleUrl: './enrollments.component.css'
 })
 export class EnrollmentsComponent {
- 
   // Store the currently selected program ID to display patients
-  selectedProgramId: number | null = null;
+  selectedProgramId: string | null = null;
 
-  // Dummy data for programs
-  programs = [
-    { id: 1, name: 'Weight Loss Program', description: 'A 3-month journey towards healthier living and fitness.', enrolledPatientsCount: 24 },
-    { id: 2, name: 'Diabetes Management', description: 'Comprehensive education and support for diabetes care.', enrolledPatientsCount: 17 },
-    { id: 3, name: 'Heart Health Program', description: 'Empowering heart-healthy lifestyles with expert guidance.', enrolledPatientsCount: 31 },
-  ];
-
-  // Dummy data for patients (to be filtered based on the program ID)
-  patientsData: Patient[] = [
-    { programId: 1, name: 'John Doe', email: 'john@example.com', startDate: '2025-05-01' },
-    { programId: 1, name: 'Jane Smith', email: 'jane@example.com', startDate: '2025-05-03' },
-    { programId: 2, name: 'Michael Johnson', email: 'michael@example.com', startDate: '2025-06-01' },
-    { programId: 2, name: 'Emily Davis', email: 'emily@example.com', startDate: '2025-06-05' },
-    { programId: 3, name: 'Chris Lee', email: 'chris@example.com', startDate: '2025-07-01' },
-    { programId: 3, name: 'Ava Martinez', email: 'ava@example.com', startDate: '2025-07-05' },
-  ];
+  // Program list to be fetched from the backend
+  programs: Program[] = [];
 
   // Array to store patients filtered by program
-  patients: Patient[] = [];
+  patients: any[] = [];
 
-  // Method to open the patients popup and filter patients based on selected program
-  openPatientsPopup(programId: number): void {
-    this.selectedProgramId = programId;
-    this.patients = this.patientsData.filter(patient => patient.programId === programId);
+  constructor(
+    private programService: ProgramService,
+    private enrollmentService: EnrollmentService
+  ) {}
+
+  ngOnInit(): void {
+    // Fetch all programs from the backend
+    this.programService.getAllPrograms().subscribe((programs) => {
+      this.programs = programs;
+      this.programs.forEach(program => {
+        this.getEnrollmentsCount(program.id);
+      });
+    });
   }
+
+  // Get enrollments count for each program
+  getEnrollmentsCount(programId: string): void {
+    this.enrollmentService.getEnrollmentsByProgramId(programId).subscribe(
+      (enrollments) => {
+        const program = this.programs.find(p => p.id === programId);
+        if (program) {
+          program.totalEnrollments = enrollments.length;
+        }
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+  }
+
+  openPatientsPopup(programId: string): void {
+    this.selectedProgramId = programId;
+    this.enrollmentService.getEnrollmentsByProgramId(programId).subscribe((enrollments) => {
+      // Map the enrollments to the appropriate client data
+      this.patients = enrollments.map((enrollment) => {
+        return {
+          id: enrollment.client.id,
+          fname: enrollment.client.fname,
+          lname: enrollment.client.lname,
+          email: enrollment.client.email,
+          startDate: enrollment.startDate // Assuming startDate is directly available from the enrollment
+        };
+      });
+    });
+  }
+  
 
   // Method to close the patients popup
   closePopup(): void {
