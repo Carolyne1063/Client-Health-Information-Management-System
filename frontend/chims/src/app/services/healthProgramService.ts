@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+// Define the Program interface here as well, or import it
+export interface Program {
+  id: string;
+  name: string;
+  description: string;
+  totalEnrollments?: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })

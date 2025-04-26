@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DashboardComponent } from './components/admin-dashboard/dashboard/dashboard.component';
-import { PatientsComponent } from './components/admin-dashboard/patients/patients.component';
 import { HealthProgramsComponent } from './components/admin-dashboard/health-programs/health-programs.component';
 import { EnrollmentsComponent } from './components/admin-dashboard/enrollments/enrollments.component';
 import { SettingsComponent } from './components/admin-dashboard/settings/settings.component';
@@ -16,7 +15,6 @@ export const routes: Routes = [
     { path: 'admin', component: AdminDashboardComponent, 
         children: [
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'patients', component: PatientsComponent },
             { path: 'enroll-patient', component: EnrollPatientComponent },
             { path: 'all-patients', component: AllPatientComponent },
             { path: 'patient-details/:id', component: PatientDetailsComponent },

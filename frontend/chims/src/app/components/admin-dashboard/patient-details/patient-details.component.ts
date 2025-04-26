@@ -72,6 +72,7 @@ export class PatientDetailsComponent {
   updatePatient() {
     const patientId = this.route.snapshot.paramMap.get('id');
     if (patientId) {
+      console.log('Sending updated patient data:', this.patient); // Log the data being sent
       this.clientService.updateClient(patientId, this.patient).subscribe({
         next: (response) => {
           console.log('Patient updated successfully:', response);
@@ -83,6 +84,7 @@ export class PatientDetailsComponent {
       });
     }
   }
+  
 
   // Confirm before deleting the client
   confirmDelete() {
@@ -91,16 +93,16 @@ export class PatientDetailsComponent {
       this.deleteClient();
     }
   }
-
-  // Delete client using the ClientService
   deleteClient() {
     const patientId = this.route.snapshot.paramMap.get('id');
     if (patientId) {
       this.clientService.deleteClient(patientId).subscribe({
         next: (response) => {
           console.log('Client deleted successfully:', response);
-          // After successful deletion, navigate to client list or another view
-          this.router.navigate(['/clients']); // Adjust this route as necessary
+          // Show success message
+          alert('Patient deleted successfully!');
+          // After successful deletion, navigate back to the patients list
+          this.router.navigate(['/all-patients']); // Adjust this route as necessary
         },
         error: (err) => {
           console.error('Error deleting client:', err);
@@ -108,4 +110,5 @@ export class PatientDetailsComponent {
       });
     }
   }
+  
 }
