@@ -8,14 +8,18 @@ import { SettingsComponent } from './components/admin-dashboard/settings/setting
 import { EnrollPatientComponent } from './components/admin-dashboard/enroll-patient/enroll-patient.component';
 import { AllPatientComponent } from './components/admin-dashboard/all-patient/all-patient.component';
 import { AddPatientComponent } from './components/admin-dashboard/add-patient/add-patient.component';
+import { PatientDetailsComponent } from './components/admin-dashboard/patient-details/patient-details.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
+    { path: 'login', component: LoginComponent }, 
     { path: 'admin', component: AdminDashboardComponent, 
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'patients', component: PatientsComponent },
             { path: 'enroll-patient', component: EnrollPatientComponent },
             { path: 'all-patients', component: AllPatientComponent },
+            { path: 'patient-details', component: PatientDetailsComponent },
             { path: 'add-patient', component: AddPatientComponent },  
             { path: 'programs', component: HealthProgramsComponent },
             { path: 'enrollments', component: EnrollmentsComponent },

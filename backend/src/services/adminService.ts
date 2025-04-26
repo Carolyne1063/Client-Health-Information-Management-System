@@ -1,0 +1,28 @@
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+
+const prisma = new PrismaClient();
+
+export const registerAdmin = async (data: any) => {
+  const { email, password, name } = data;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  return await prisma.admin.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword
+    }
+  });
+};
+
+export const loginAdmin = async (email: string, password: string) => {
+  const admin = await prisma.admin.findUnique({ where: { email } });
+  if (!admin) throw new Error('Invalid credentials');
+
+  const isMatch = await bcrypt.compare(password, admin.password);
+  if (!isMatch) throw new Error('Invalid credentials');
+
+  return admin;
+};

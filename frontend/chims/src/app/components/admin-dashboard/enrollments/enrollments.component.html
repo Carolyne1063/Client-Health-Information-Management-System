@@ -1,1 +1,86 @@
-<p>enrollments works!</p>
+<div class="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-100 p-10">
+    <h2 class="text-4xl font-extrabold text-green-700 text-center mb-12">Program Enrollments Overview</h2>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Program Card -->
+      <div class="bg-white/70 backdrop-blur-lg shadow-2xl rounded-3xl p-8 hover:scale-105 transition transform duration-300">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-green-800">Weight Loss Program</h3>
+          <p class="text-gray-600 text-sm mt-2">A 3-month journey towards healthier living and fitness.</p>
+        </div>
+        
+        <div class="flex justify-between items-center mt-6">
+          <div>
+            <p class="text-gray-400 text-sm">Enrolled Patients</p>
+            <p class="text-green-700 text-3xl font-bold">24</p>
+          </div>
+          <button (click)="openPatientsPopup(1)" class="bg-green-500 hover:bg-green-600 text-white text-sm font-bold py-2 px-4 rounded-full transition">
+            View Patients
+          </button>
+        </div>
+      </div>
+  
+      <!-- Another Program Card -->
+      <div class="bg-white/70 backdrop-blur-lg shadow-2xl rounded-3xl p-8 hover:scale-105 transition transform duration-300">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-green-800">Diabetes Management</h3>
+          <p class="text-gray-600 text-sm mt-2">Comprehensive education and support for diabetes care.</p>
+        </div>
+        
+        <div class="flex justify-between items-center mt-6">
+          <div>
+            <p class="text-gray-400 text-sm">Enrolled Patients</p>
+            <p class="text-green-700 text-3xl font-bold">17</p>
+          </div>
+          <button (click)="openPatientsPopup(2)" class="bg-green-500 hover:bg-green-600 text-white text-sm font-bold py-2 px-4 rounded-full transition">
+            View Patients
+          </button>
+        </div>
+      </div>
+  
+      <!-- Another Program Card -->
+      <div class="bg-white/70 backdrop-blur-lg shadow-2xl rounded-3xl p-8 hover:scale-105 transition transform duration-300">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-green-800">Heart Health Program</h3>
+          <p class="text-gray-600 text-sm mt-2">Empowering heart-healthy lifestyles with expert guidance.</p>
+        </div>
+        
+        <div class="flex justify-between items-center mt-6">
+          <div>
+            <p class="text-gray-400 text-sm">Enrolled Patients</p>
+            <p class="text-green-700 text-3xl font-bold">31</p>
+          </div>
+          <button (click)="openPatientsPopup(3)" class="bg-green-500 hover:bg-green-600 text-white text-sm font-bold py-2 px-4 rounded-full transition">
+            View Patients
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Popup Table for Patients -->
+    <div *ngIf="selectedProgramId !== null" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+      <div class="bg-white p-8 rounded-xl shadow-xl w-4/5 max-w-4xl">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-green-700">Patients for Program</h3>
+          <button (click)="closePopup()" class="bg-red-500 text-white px-4 py-2 rounded-full">X</button>
+        </div>
+        <table class="min-w-full table-auto">
+          <thead>
+            <tr class="bg-green-100">
+              <th class="py-2 px-4 text-left">Name</th>
+              <th class="py-2 px-4 text-left">Email</th>
+              <th class="py-2 px-4 text-left">Start Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients">
+              <td class="py-2 px-4">{{ patient.name }}</td>
+              <td class="py-2 px-4">{{ patient.email }}</td>
+              <td class="py-2 px-4">{{ patient.startDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

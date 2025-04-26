@@ -2,6 +2,7 @@ import express from 'express';
 import healthProgramRoutes from './src/routes/healthProgramRoutes';
 import clientRoutes from './src/routes/clientRoutes';
 import enrollmentRoutes from './src/routes/enrollmentRoutes';
+import adminRoutes from './src/routes/adminRoutes';
 
 
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use('/api/programs', healthProgramRoutes); // Now available at /api/programs
 app.use('/api/clients', clientRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
+app.use('/api/admin', adminRoutes);
 
 
 

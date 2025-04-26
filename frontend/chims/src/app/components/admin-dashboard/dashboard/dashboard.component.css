@@ -1,0 +1,68 @@
+/* Tailwind Customizations */
+.bg-white {
+    background-color: #ffffff;
+  }
+  .shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  .p-8 {
+    padding: 2rem;
+  }
+  .text-gray-800 {
+    color: #2d3748;
+  }
+  .text-gray-600 {
+    color: #718096;
+  }
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .border {
+    border-width: 1px;
+  }
+  .border-gray-300 {
+    border-color: #e2e8f0;
+  }
+  
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+  
+  .transition {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Adding icons using Font Awesome */
+  .fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+  .fas.fa-users::before {
+    content: "\f0c0";
+  }
+  .fas.fa-heart::before {
+    content: "\f004";
+  }
+  .fas.fa-user-check::before {
+    content: "\f4fc";
+  }
+  .fas.fa-check-circle::before {
+    content: "\f058";
+  }
+  .fas.fa-heart-broken::before {
+    content: "\f7a9";
+  }
+  

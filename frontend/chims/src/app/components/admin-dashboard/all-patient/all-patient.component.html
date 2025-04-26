@@ -1,1 +1,53 @@
-<p>all-patient works!</p>
+<div class="p-8 bg-green-50 min-h-screen">
+    <!-- Title -->
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-green-800">All Patients</h1>
+        <p class="text-green-600 mt-2">Manage all registered patients easily</p>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white rounded-2xl shadow-lg p-6">
+        <table class="min-w-full table-auto text-gray-700">
+            <thead>
+                <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                    <th class="py-3 px-6 text-left">#</th>
+                    <th class="py-3 px-6 text-left">First Name</th>
+                    <th class="py-3 px-6 text-left">Last Name</th>
+                    <th class="py-3 px-6 text-left">Age</th>
+                    <th class="py-3 px-6 text-left">Gender</th>
+                    <th class="py-3 px-6 text-left">Phone</th>
+                    <th class="py-3 px-6 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                <tr class="border-b border-gray-200 hover:bg-green-50">
+                    <td class="py-3 px-6 text-left">1</td>
+                    <td class="py-3 px-6 text-left">John</td>
+                    <td class="py-3 px-6 text-left">Doe</td>
+                    <td class="py-3 px-6 text-left">30</td>
+                    <td class="py-3 px-6 text-left">Male</td>
+                    <td class="py-3 px-6 text-left">+254 712 345678</td>
+                    <td class="py-3 px-6 text-center">
+                        <a routerLink="/admin/patient-details"
+                            class="bg-green-400 hover:bg-green-500 text-white text-xs font-bold py-2 px-4 rounded-full transition">
+                            View Profile
+                        </a>
+                    </td>
+                </tr>
+
+                <!-- Add more rows -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-6 text-gray-600">
+            <p class="text-sm">Showing 1 to 10 of 20 entries</p>
+            <div class="flex items-center space-x-2">
+                <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">Previous</button>
+                <button class="px-3 py-1 bg-green-400 text-white rounded">1</button>
+                <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">2</button>
+                <button class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
