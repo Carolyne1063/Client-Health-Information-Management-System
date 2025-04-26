@@ -18,6 +18,11 @@ export class ProgramService {
 
   constructor(private http: HttpClient) {}
 
+   // Create a new health program
+   createProgram(program: Program): Observable<Program> {
+    return this.http.post<Program>(`${this.baseUrl}`, program);
+  }
+
   getAllPrograms(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
