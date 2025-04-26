@@ -40,7 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const controller = __importStar(require("../controllers/clientController"));
 const router = express_1.default.Router();
-router.post('/', controller.registerClient);
+router.post('/register', controller.registerClient);
 router.get('/', controller.getAllClients);
 router.get('/:id', controller.getClientById);
 router.put('/:id', controller.updateClient);

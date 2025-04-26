@@ -1,81 +1,93 @@
-<div class="min-h-screen bg-emerald-50 p-8">
+<div class="min-h-screen bg-white p-8">
     <h1 class="text-3xl font-bold text-emerald-800 mb-8">Add New Patient</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- First Name -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-user"></i>
-                <span>First Name</span>
-            </label>
-            <input type="text" placeholder="Enter first name"
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
-        </div>
-
-        <!-- Last Name -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-user"></i>
-                <span>Last Name</span>
-            </label>
-            <input type="text" placeholder="Enter last name"
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
-        </div>
-
-        <!-- Age -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-birthday-cake"></i>
-                <span>Age</span>
-            </label>
-            <input type="number" placeholder="Enter age"
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
-        </div>
-
-        <!-- Gender -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-venus-mars"></i>
-                <span>Gender</span>
-            </label>
-            <select
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800">
-                <option value="" disabled selected>Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-phone"></i>
-                <span>Phone Number</span>
-            </label>
-            <input type="text" placeholder="Enter phone number"
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
-        </div>
-
-        <!-- Email -->
-        <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
-            <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
-                <i class="fas fa-envelope"></i>
-                <span>Email</span>
-            </label>
-            <input type="email" placeholder="Enter email address"
-                class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
-        </div>
-
+    <div *ngIf="successMessage" class="text-green-700 text-center mt-6 font-semibold">
+        {{ successMessage }}
     </div>
 
-    <!-- Submit Button -->
-    <div class="mt-10 flex justify-center">
-        <button
-            class="bg-green-600 hover:bg-green-700 text-white px-10 py-3 rounded-full shadow-lg hover:shadow-2xl transition text-lg font-semibold tracking-wide">
-            Save Patient
-        </button>
-    </div>
+    <!-- <div *ngIf="errorMessage" class="text-red-700 text-center mt-6 font-semibold">
+        {{ errorMessage }} -->
+
+    <form [formGroup]="patientForm" (ngSubmit)="savePatient()">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- First Name -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-user"></i>
+                    <span>First Name</span>
+                </label>
+                <input type="text" formControlName="firstName" placeholder="Enter first name"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
+            </div>
+
+            <!-- Last Name -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-user"></i>
+                    <span>Last Name</span>
+                </label>
+                <input type="text" formControlName="lastName" placeholder="Enter last name"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
+            </div>
+
+            <!-- Age -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>Age</span>
+                </label>
+                <input type="number" formControlName="age" placeholder="Enter age"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
+            </div>
+
+            <!-- Gender -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-venus-mars"></i>
+                    <span>Gender</span>
+                </label>
+                <select formControlName="gender"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800">
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone Number</span>
+                </label>
+                <input type="text" formControlName="phone" placeholder="Enter phone number"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
+            </div>
+
+            <!-- Email -->
+            <div class="bg-emerald-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+                <label class="text-emerald-700 text-sm font-semibold flex items-center space-x-2 mb-2">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </label>
+                <input type="email" formControlName="email" placeholder="Enter email address"
+                    class="w-full bg-transparent border-b-2 border-emerald-400 focus:border-emerald-600 outline-none py-2 text-emerald-800 placeholder-emerald-400">
+            </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-10 flex justify-center">
+            <button type="submit"
+                class="bg-green-600 hover:bg-green-700 text-white px-10 py-3 rounded-full shadow-lg hover:shadow-2xl transition text-lg font-semibold tracking-wide">
+                Save Patient
+            </button>
+        </div>
+
+
+
+    </form>
 
 </div>
