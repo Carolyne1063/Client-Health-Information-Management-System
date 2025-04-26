@@ -19,7 +19,9 @@ export class EnrollPatientComponent {
   selectedClientId: string = '';
   selectedProgramId: string = '';
   selectedStartDate: string = '';
-
+  
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -83,12 +85,19 @@ export class EnrollPatientComponent {
     this.enrollmentService.enrollClient(enrollmentData).subscribe({
       next: (response: any) => {
         console.log('Enrollment successful', response);
+        this.successMessage = 'Patient enrolled successfully!';
+        setTimeout(() => {
+          this.successMessage = '';
+        }, 5000); // Hide success message after 5 seconds
+        this.enrollForm.reset(); // Reset the form after successful enrollment
       },
       error: (error: any) => {
         console.error('Error enrolling patient', error);
+        this.errorMessage = 'Error enrolling patient. Please try again.';
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 5000); // Hide error message after 5 seconds
       }
     });
   }
-  
-  
 }
