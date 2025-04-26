@@ -23,6 +23,18 @@ export const getEnrollmentById = async (req: Request, res: Response) => {
     : res.status(404).json({ error: 'Enrollment not found' });
 };
 
+export const fetchEnrollmentsByClientId = async (req: Request, res: Response) => {
+  try {
+    const { clientId } = req.params;
+    const enrollments = await enrollmentService.getEnrollmentsByClientId(clientId);
+    res.status(200).json(enrollments);
+  } catch (error) {
+    console.error('Error fetching enrollments by clientId:', error);
+    res.status(500).json({ message: 'Error fetching enrollments', error });
+  }
+};
+
+
 export const updateEnrollment = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {

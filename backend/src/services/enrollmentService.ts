@@ -45,6 +45,16 @@ export const getEnrollmentById = async (id: string) => {
   });
 };
 
+export const getEnrollmentsByClientId = async (clientId: string) => {
+  return await prisma.enrollment.findMany({
+    where: { clientId },
+    include: {
+      client: true,
+      program: true
+    }
+  });
+};
+
 export const updateEnrollment = async (id: string, data: any) => {
   const { clientId, programId, startDate } = data;
 

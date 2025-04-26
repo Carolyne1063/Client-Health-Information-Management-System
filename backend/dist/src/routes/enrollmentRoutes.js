@@ -42,6 +42,7 @@ const controller = __importStar(require("../controllers/enrollmentController"));
 const router = express_1.default.Router();
 router.post('/create', controller.enrollClient);
 router.get('/', controller.getAllEnrollments);
+router.get('/client/:clientId', controller.fetchEnrollmentsByClientId);
 router.get('/:id', controller.getEnrollmentById);
 router.put('/:id', controller.updateEnrollment);
 router.delete('/:id', controller.deleteEnrollment);

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEnrollment = exports.updateEnrollment = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
+exports.deleteEnrollment = exports.updateEnrollment = exports.getEnrollmentsByClientId = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const enrollClient = async (data) => {
@@ -43,6 +43,16 @@ const getEnrollmentById = async (id) => {
     });
 };
 exports.getEnrollmentById = getEnrollmentById;
+const getEnrollmentsByClientId = async (clientId) => {
+    return await prisma.enrollment.findMany({
+        where: { clientId },
+        include: {
+            client: true,
+            program: true
+        }
+    });
+};
+exports.getEnrollmentsByClientId = getEnrollmentsByClientId;
 const updateEnrollment = async (id, data) => {
     const { clientId, programId, startDate } = data;
     // Ensure the startDate is provided and formatted as 'YYYY-MM-DD'

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEnrollment = exports.updateEnrollment = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
+exports.deleteEnrollment = exports.updateEnrollment = exports.fetchEnrollmentsByClientId = exports.getEnrollmentById = exports.getAllEnrollments = exports.enrollClient = void 0;
 const enrollmentService = __importStar(require("../services/enrollmentService"));
 const enrollClient = async (req, res) => {
     try {
@@ -58,6 +58,18 @@ const getEnrollmentById = async (req, res) => {
         : res.status(404).json({ error: 'Enrollment not found' });
 };
 exports.getEnrollmentById = getEnrollmentById;
+const fetchEnrollmentsByClientId = async (req, res) => {
+    try {
+        const { clientId } = req.params;
+        const enrollments = await enrollmentService.getEnrollmentsByClientId(clientId);
+        res.status(200).json(enrollments);
+    }
+    catch (error) {
+        console.error('Error fetching enrollments by clientId:', error);
+        res.status(500).json({ message: 'Error fetching enrollments', error });
+    }
+};
+exports.fetchEnrollmentsByClientId = fetchEnrollmentsByClientId;
 const updateEnrollment = async (req, res) => {
     const { id } = req.params;
     try {
