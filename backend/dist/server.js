@@ -9,8 +9,10 @@ const clientRoutes_1 = __importDefault(require("./src/routes/clientRoutes"));
 const enrollmentRoutes_1 = __importDefault(require("./src/routes/enrollmentRoutes"));
 const adminRoutes_1 = __importDefault(require("./src/routes/adminRoutes"));
 const app = (0, express_1.default)();
+const cors = require('cors');
 app.use(express_1.default.json());
-app.use('/api/programs', healthProgramRoutes_1.default); // Now available at /api/programs
+app.use(cors());
+app.use('/api/programs', healthProgramRoutes_1.default);
 app.use('/api/clients', clientRoutes_1.default);
 app.use('/api/enrollments', enrollmentRoutes_1.default);
 app.use('/api/admin', adminRoutes_1.default);

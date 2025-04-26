@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
-  private apiUrl = 'http://localhost:4000/admin';  // Update with your actual API URL
+  private apiUrl = 'http://localhost:4000/api/admin';  // Update with your actual API URL
 
   constructor(private http: HttpClient) {}
 
