@@ -5,13 +5,10 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const enrollClient = async (data) => {
     const { clientId, programId, startDate } = data;
-    // Ensure the startDate is provided and formatted as 'YYYY-MM-DD'
     if (!startDate) {
         throw new Error("Start date is required.");
     }
-    // Parse and validate the startDate
     const formattedStartDate = new Date(`${startDate}T00:00:00`);
-    // If the parsed startDate is invalid, throw an error
     if (isNaN(formattedStartDate.getTime())) {
         throw new Error("Invalid start date format.");
     }
@@ -19,7 +16,7 @@ const enrollClient = async (data) => {
         data: {
             clientId,
             programId,
-            startDate: formattedStartDate // Store as DateTime
+            startDate: formattedStartDate
         }
     });
 };
@@ -53,7 +50,6 @@ const getEnrollmentsByClientId = async (clientId) => {
     });
 };
 exports.getEnrollmentsByClientId = getEnrollmentsByClientId;
-// services/enrollmentService.ts
 const getEnrollmentsByProgramId = async (programId) => {
     return await prisma.enrollment.findMany({
         where: { programId },
@@ -66,23 +62,19 @@ const getEnrollmentsByProgramId = async (programId) => {
 exports.getEnrollmentsByProgramId = getEnrollmentsByProgramId;
 const updateEnrollment = async (id, data) => {
     const { clientId, programId, startDate } = data;
-    // Ensure the startDate is provided and formatted as 'YYYY-MM-DD'
     if (!startDate) {
         throw new Error("Start date is required.");
     }
-    // Parse and validate the startDate
     const formattedStartDate = new Date(`${startDate}T00:00:00`);
-    // If the parsed startDate is invalid, throw an error
     if (isNaN(formattedStartDate.getTime())) {
         throw new Error("Invalid start date format.");
     }
-    // Perform the update operation
     return await prisma.enrollment.update({
         where: { id },
         data: {
             clientId,
             programId,
-            startDate: formattedStartDate // Store as DateTime
+            startDate: formattedStartDate
         }
     });
 };

@@ -31,7 +31,6 @@ const loginAdmin = async (email, password) => {
 exports.loginAdmin = loginAdmin;
 const updateAdmin = async (id, data) => {
     const { name, email, password } = data;
-    // If a password is provided, hash it
     let updatedData = { name, email };
     if (password) {
         updatedData.password = await bcryptjs_1.default.hash(password, 10);

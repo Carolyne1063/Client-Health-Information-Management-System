@@ -98,6 +98,9 @@ DATABASE_URL="sqlserver://SERVER_NAME;database=DATABASE_NAME;user=USER;password=
    ng serve -o
    ```
 
+## How to login into the system
+Email: admin@example.com
+Password: admin
 
 **Search Functionality**:  
 You can search for patients by first name or last name directly in the UI!

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteClient = exports.updateClient = exports.getClientById = exports.getAllClients = exports.registerClient = void 0;
-// src/services/clientService.ts
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const registerClient = async (data) => {
