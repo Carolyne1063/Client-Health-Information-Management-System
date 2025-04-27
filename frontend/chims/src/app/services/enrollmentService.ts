@@ -1,4 +1,3 @@
-// src/app/services/enrollment.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EnrollmentService {
-  private baseUrl = 'http://localhost:4000/api/enrollments'; // change if your API base URL is different
+  private baseUrl = 'http://localhost:4000/api/enrollments'; 
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +22,6 @@ export class EnrollmentService {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  // Add the new method to get enrollments by program ID
   getEnrollmentsByProgramId(programId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/program/${programId}`);
   }

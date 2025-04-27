@@ -74,12 +74,12 @@ export class EnrollPatientComponent {
     }
   
     // Format the date to YYYY-MM-DD (short date format)
-    const formattedStartDate = new Date(startDate).toISOString().split('T')[0]; // Get the short date format (YYYY-MM-DD)
+    const formattedStartDate = new Date(startDate).toISOString().split('T')[0]; 
   
     const enrollmentData = {
       clientId: clientId,
       programId: programId,
-      startDate: formattedStartDate // Send short date to the backend
+      startDate: formattedStartDate 
     };
   
     this.enrollmentService.enrollClient(enrollmentData).subscribe({
@@ -88,15 +88,15 @@ export class EnrollPatientComponent {
         this.successMessage = 'Patient enrolled successfully!';
         setTimeout(() => {
           this.successMessage = '';
-        }, 5000); // Hide success message after 5 seconds
-        this.enrollForm.reset(); // Reset the form after successful enrollment
+        }, 5000); 
+        this.enrollForm.reset(); 
       },
       error: (error: any) => {
         console.error('Error enrolling patient', error);
         this.errorMessage = 'Error enrolling patient. Please try again.';
         setTimeout(() => {
           this.errorMessage = '';
-        }, 5000); // Hide error message after 5 seconds
+        }, 5000); 
       }
     });
   }

@@ -19,7 +19,7 @@ GET http://localhost:4000/api/enrollments/program/372a2009-de54-454e-b3a7-c2a351
 Content-Type: application/json
 
 ### Get Enrollments by Client ID
-GET http://localhost:4000/api/enrollments/client/f513745e-d29c-48ae-9e81-105ac79253d9
+GET http://localhost:4000/api/enrollments/4c95bf7e-134a-4b61-8e5e-950b8920aa22
 Content-Type: application/json
 
 
@@ -33,4 +33,4 @@ Content-Type: application/json
 }
 
 ### Delete Enrollment
-DELETE http://localhost:4000/api/enrollments/c4590277-df72-46d9-ab24-fef1351ceadc
+DELETE http://localhost:4000/api/enrollments/d3486f1b-1ef6-4c98-bf46-579a976908f2

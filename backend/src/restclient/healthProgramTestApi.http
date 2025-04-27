@@ -18,8 +18,8 @@ PUT http://localhost:4000/api/programs/05d928d1-86be-4a8a-a7cd-0e405cc455e2
 Content-Type: application/json
 
 {
-  "name": "Updated Weight Loss Program",
-  "description": "Updated program details for weight loss."
+  "name": "Weight Loss Program",
+  "description": "Program details for weight loss."
 }
 
 ### Delete a health program

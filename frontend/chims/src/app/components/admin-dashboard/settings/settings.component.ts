@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../../services/adminService';  // Ensure the path is correct
+import { AdminService } from '../../../services/adminService';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SettingsComponent implements OnInit {
   admin = {
-    id: '',   // Admin ID will be set from localStorage
+    id: '',   
     name: '',
     email: '',
     password: ''
@@ -32,12 +32,10 @@ export class SettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    // Call the update service
     this.adminService.updateAdmin(this.admin).subscribe(response => {
       console.log('Admin updated', response);
       alert('Admin details updated successfully!');
 
-      // Update local storage with the new admin data
       localStorage.setItem('adminData', JSON.stringify(response));
     }, error => {
       console.error('Error updating admin', error);

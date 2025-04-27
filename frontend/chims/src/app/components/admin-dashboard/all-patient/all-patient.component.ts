@@ -22,7 +22,7 @@ export class AllPatientComponent implements OnInit {
   getPatients() {
     this.clientService.getAllClients().subscribe({
       next: (res: any) => {
-        this.patients = res; // Assuming your backend returns an array
+        this.patients = res; 
       },
       error: (err: any) => {
         console.error('Failed to fetch patients', err);

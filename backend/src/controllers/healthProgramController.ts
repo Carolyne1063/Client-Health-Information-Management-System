@@ -1,5 +1,3 @@
-// controllers/healthProgramController.ts
-
 import { Request, Response } from 'express';
 import * as service from '../services/healthProgramService';
 

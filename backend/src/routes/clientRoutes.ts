@@ -1,4 +1,3 @@
-// src/routes/clientRoutes.ts
 import express from 'express';
 import * as controller from '../controllers/clientController';
 

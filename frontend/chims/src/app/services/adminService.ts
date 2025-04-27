@@ -1,4 +1,3 @@
-// src/app/services/admin.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
-  private apiUrl = 'http://localhost:4000/api/admin';  // Update with your actual API URL
+  private apiUrl = 'http://localhost:4000/api/admin';  
 
   constructor(private http: HttpClient) {}
 
@@ -16,9 +15,8 @@ export class AdminService {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }  
 
-  // src/app/services/admin.service.ts
 updateAdmin(admin: any): Observable<any> {
-  return this.http.put(`${this.apiUrl}/${admin.id}`, admin);  // Ensure admin.id is part of the URL
+  return this.http.put(`${this.apiUrl}/${admin.id}`, admin);  
 }
 
 

@@ -45,9 +45,8 @@ export class AddPatientComponent {
       this.clientService.registerClient(formData).subscribe({
         next: (res: any) => {
           this.successMessage = 'Patient registered successfully!';
-          this.patientForm.reset(); // Reset the form
+          this.patientForm.reset(); 
 
-          // Make the success message disappear after 3 seconds
           setTimeout(() => {
             this.successMessage = '';
           }, 3000);

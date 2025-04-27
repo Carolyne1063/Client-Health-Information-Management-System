@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProgramService, Program } from '../../../services/healthProgramService'; // Import the ProgramService
+import { ProgramService, Program } from '../../../services/healthProgramService'; 
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { Router, RouterModule } from '@angular/router';
 export class HealthProgramsComponent implements OnInit {
   isModalOpen = false;
   isEditModalOpen = false;
-  isDeleteConfirmModalOpen = false;  // Add this property for delete confirmation modal
+  isDeleteConfirmModalOpen = false;  
   programForm: FormGroup;
   programs: Program[] = [];
   selectedProgramId: string | null = null;
@@ -115,8 +115,8 @@ export class HealthProgramsComponent implements OnInit {
   }
 
   deleteProgram(id: string) {
-    this.selectedProgramId = id;  // Set selected program ID before showing confirmation modal
-    this.isDeleteConfirmModalOpen = true;  // Open the delete confirmation modal
+    this.selectedProgramId = id;  
+    this.isDeleteConfirmModalOpen = true;  
   }
 
   confirmDeleteProgram() {

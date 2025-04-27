@@ -1,4 +1,3 @@
-// src/routes/enrollmentRoutes.ts
 import express from 'express';
 import * as controller from '../controllers/enrollmentController';
 

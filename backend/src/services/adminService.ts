@@ -30,7 +30,7 @@ export const loginAdmin = async (email: string, password: string) => {
 export const updateAdmin = async (id: string, data: any) => {
   const { name, email, password } = data;
 
-  // If a password is provided, hash it
+
   let updatedData: any = { name, email };
   if (password) {
     updatedData.password = await bcrypt.hash(password, 10);

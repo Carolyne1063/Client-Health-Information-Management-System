@@ -1,5 +1,3 @@
-// src/app/services/client.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientService {
-  private baseUrl = 'http://localhost:4000/api/clients'; // Change URL if needed
+  private baseUrl = 'http://localhost:4000/api/clients'; 
 
   constructor(private http: HttpClient) {}
 

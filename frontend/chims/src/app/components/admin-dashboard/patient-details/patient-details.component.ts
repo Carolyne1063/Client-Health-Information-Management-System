@@ -21,7 +21,7 @@ export class PatientDetailsComponent {
     private route: ActivatedRoute,
     private clientService: ClientService,
     private enrollmentService: EnrollmentService,
-    private router: Router // Inject Router for navigation
+    private router: Router 
   ) { }
 
   ngOnInit(): void {
@@ -78,13 +78,13 @@ export class PatientDetailsComponent {
         email: this.patient.email
       };
   
-      console.log('Sending updated patient data:', patientData); // Log for debugging
+      console.log('Sending updated patient data:', patientData); 
   
       this.clientService.updateClient(patientId, patientData).subscribe({
         next: (response) => {
           console.log('Patient updated successfully:', response);
-          this.isEditing = false; // Exit edit mode
-          this.loadPatientData(); // Reload patient data
+          this.isEditing = false; 
+          this.loadPatientData();
         },
         error: (err) => {
           console.error('Error updating patient:', err);
@@ -94,22 +94,25 @@ export class PatientDetailsComponent {
     }
   }
   
-
-// Delete the patient
 deleteClient() {
-  const patientId = this.route.snapshot.paramMap.get('id'); // Get the ID from the URL
+  const patientId = this.route.snapshot.paramMap.get('id'); 
+  console.log('Deleting client with ID:', patientId);  
+
   if (patientId) {
     this.clientService.deleteClient(patientId).subscribe({
       next: (response) => {
         console.log('Client deleted successfully:', response);
         alert('Patient deleted successfully!');
-        this.router.navigate(['/all-patients']); // Navigate to the patient list after deletion
+        this.router.navigate(['/all-patients']); 
       },
       error: (err) => {
         console.error('Error deleting client:', err);
         alert('Error deleting patient. Please try again later.');
       }
     });
+  } else {
+    console.error('No ID provided for deletion');
+    alert('Error: No client ID found.');
   }
 }
 

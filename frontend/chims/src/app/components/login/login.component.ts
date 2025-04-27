@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../services/adminService';
-import { Router } from '@angular/router';  // Add this import
+import { Router } from '@angular/router';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -28,12 +28,10 @@ export class LoginComponent {
         this.successMessage = 'Login successful! Redirecting...';
         this.errorMessage = '';
 
-        // Store the admin data (including id) in localStorage after successful login
         localStorage.setItem('adminData', JSON.stringify(response.admin));
 
-        // Wait 2 seconds, then redirect
         setTimeout(() => {
-          this.router.navigate(['/admin/dashboard']); // Update the route where you want to redirect
+          this.router.navigate(['/admin/dashboard']); 
         }, 2000);
       },
       error: (error) => {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientService } from '../../../services/clientService';  // Assuming this is the path
-import { ProgramService } from '../../../services/healthProgramService';// Assuming this is the path
-import { EnrollmentService } from '../../../services/enrollmentService'; // Assuming this is the path
+import { ClientService } from '../../../services/clientService';  
+import { ProgramService } from '../../../services/healthProgramService';
+import { EnrollmentService } from '../../../services/enrollmentService'; 
 
 @Component({
   selector: 'app-dashboard',
