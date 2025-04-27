@@ -5,7 +5,8 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
     <!-- Users Card -->
-    <div class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
+    <div
+      class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
       <div class="flex items-center space-x-4">
         <div class="text-purple-600 text-3xl">
           <i class="fas fa-users"></i>
@@ -17,13 +18,14 @@
       </div>
       <div class="flex justify-between items-center mt-6">
         <div>
-          <p class="text-gray-800 text-3xl font-bold">1,234</p>
+          <p class="text-gray-800 text-3xl font-bold">{{ totalUsers }}</p>
         </div>
       </div>
     </div>
 
     <!-- Programs Card -->
-    <div class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
+    <div
+      class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
       <div class="flex items-center space-x-4">
         <div class="text-orange-500 text-3xl">
           <i class="fas fa-heartbeat"></i>
@@ -35,13 +37,14 @@
       </div>
       <div class="flex justify-between items-center mt-6">
         <div>
-          <p class="text-gray-800 text-3xl font-bold">12</p>
+          <p class="text-gray-800 text-3xl font-bold">{{ totalPrograms }}</p>
         </div>
       </div>
     </div>
 
     <!-- Enrollments Card -->
-    <div class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
+    <div
+      class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
       <div class="flex items-center space-x-4">
         <div class="text-blue-500 text-3xl">
           <i class="fas fa-user-check"></i>
@@ -53,51 +56,11 @@
       </div>
       <div class="flex justify-between items-center mt-6">
         <div>
-          <p class="text-gray-800 text-3xl font-bold">567</p>
+          <p class="text-gray-800 text-3xl font-bold">{{ totalEnrollments }}</p>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Other Analytics Section -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-10">
-
-    <!-- Active Enrollments Card -->
-    <div class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
-      <div class="flex items-center space-x-4">
-        <div class="text-green-500 text-3xl">
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-green-500">Active Enrollments</h3>
-          <p class="text-gray-600 text-sm mt-2">Number of currently active enrollments.</p>
-        </div>
-      </div>
-      <div class="flex justify-between items-center mt-6">
-        <div>
-          <p class="text-gray-800 text-3xl font-bold">350</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Programs with No Enrollments Card -->
-    <div class="bg-white shadow-lg rounded-lg p-8 hover:scale-105 transition transform duration-300 border border-gray-300">
-      <div class="flex items-center space-x-4">
-        <div class="text-red-500 text-3xl">
-          <i class="fas fa-heart-broken"></i>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-red-500">Programs with No Enrollments</h3>
-          <p class="text-gray-600 text-sm mt-2">Programs that have no current enrollments.</p>
-        </div>
-      </div>
-      <div class="flex justify-between items-center mt-6">
-        <div>
-          <p class="text-gray-800 text-3xl font-bold">3</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
