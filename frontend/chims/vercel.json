@@ -1,0 +1,7 @@
+{
+    "outputDirectory": "dist/chims",
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }
+  
